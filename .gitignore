@@ -1,0 +1,11 @@
+*.pt
+*.pth
+runs/
+__pycache__/
+*.log
+data/images/
+data/labels/
+*.jpg
+*.png
+*.jpeg
+.ipynb_checkpoints/
