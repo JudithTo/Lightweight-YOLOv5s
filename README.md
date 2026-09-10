@@ -45,26 +45,6 @@ python train.py \
   --weights yolov5s.pt
 ```
 
-### Training Configuration
-
-表格
-
-| Parameter | Value |
-| --- | --- |
-| Random seed | 1 |
-| Optimizer | SGD |
-| Epochs | 200 |
-| Batch size | 4 |
-| Initial weights | YOLOv5s pretrained |
-| Input size | 640 × 640 |
-| Initial learning rate | 0.01 |
-| Final learning rate factor | 0.2 |
-| Momentum | 0.937 |
-| Weight decay | 0.0005 |
-| Warm‑up epochs | 3.0 |
-| Box loss gain | 0.05 |
-| Classification loss gain | 0.5 |
-| Objectness loss gain | 1.0 |
 
 ### M5 K‑means++ anchor usage (off‑line before training)
 
@@ -93,23 +73,17 @@ Export trained model to ONNX format for deployment:
 python scripts/export.py --weights ./weights/best.pt --img 640 --simplify
 ```
 
-### Deployment Environment
+## Reproducibility
 
-#### Setting Configuration
+Key experimental hyper‑parameters: input resolution `640×640`, training epochs `200`, batch‑size `4`, SGD optimizer.
 
-表格
+Full detailed training and deployment configurations are stored in separate documents:
 
-| Item | Configuration |
-| --- | --- |
-| Device | NVIDIA Jetson Xavier NX |
-| Operating system | Ubuntu 18.04 |
-| Python version | 3.8 |
-| Inference framework | TensorRT |
-| Inference precision | FP16 |
-| Input resolution | 640 × 640 |
-| Batch size | 1 |
-| Power mode | Maximum performance mode |
-| Acceleration strategies | TensorRT optimization, FP16 precision calibration, operator fusion, and multi‑threaded CPU/GPU pipeline scheduling |
+- [Training Configuration](configs/training_configuration.md)
+- [Deployment Configuration](configs/deployment_configuration.md)
+
+> Note: Actual hyper‑parameters used for training are also available in `data/hyp/hyp.scratch.yaml`.
+
 
 ## M6 Pruning & M7 Knowledge Distillation
 
