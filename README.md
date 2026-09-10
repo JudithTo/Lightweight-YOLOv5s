@@ -1,5 +1,35 @@
 # Lightweight‑YOLOv5s for Nectar‑Plant Flower Detection
+Lightweight YOLOv5s for UAV real‑time system
+
+This repository is modified based on the official YOLOv5 repository (https://github.com/ultralytics/yolov5).
+This code is for nectar‑plant small‑object detection with seven improvement strategies (M1‑M7).
+
+## Summary of improvements (M1‑M7)
+| ID | Improvement | Status | Description |
+|---|---|---|---|
+| M1 | Coordinate‑Attention (CA) module | ✅ Fully implemented | CoordAtt inserted at the end of backbone, defined in `models/common.py`. Configured in `models/yolov5‑ghost.yaml`. |
+| M2 | Bidirectional Feature Pyramid Networks | ⚠️ Partial implementation | Weighted Concat operator is implemented in `models/common.py`. **Full repeated BiFPN block topology is NOT adopted in final network**. Our practical feature‑fusion scheme uses multi‑scale shallow cross‑layer skip connections. |
+| M3 | Multi‑scale P2 detection head | ✅ Fully implemented | Added 4× down‑sampling P2 detection branch (output 160×160 feature map). Configured in `models/yolov5‑ghost.yaml`. Output feature maps: 160×160×255, 80×80×255, 40×40×255. |
+| M4 | Focal‑αEIOU loss function | ⚠️ Experimental prototype | Implemented class inside `utils/loss.py`. **NOT enabled by default**. Manual code modification is required to replace original CIoU loss in `ComputeLoss`. |
+| M5 | K‑means++ anchor clustering | ⚠️ Experimental prototype | Offline pre‑processing script `utils/kmeans_plus_plus_anchor.py`. Run before training to generate improved anchor priors, then copy output anchor numbers into model yaml. Original `utils/autoanchor.py` is kept for runtime anchor validation during training. |
+| M6 | Activation‑based FPGM filter pruning | ⚠️ Experimental prototype | Offline pruning prototype script: `utils/fpgm_apoz_prune.py`. Workflow: prune trained *.pt checkpoint after training, not integrated into train.py main loop. |
+| M7 | Knowledge distillation | ⚠️ Experimental prototype | Distillation loss prototype in `utils/knowledge_distill.py`. Used for accuracy recovery after M6 pruning, executed as separate offline script. |
+
+> Note for experimental prototypes(M4‑M7): These scripts strictly follow the algorithm descriptions in our manuscript, but manual parameter tuning and code adaption are required, they are not enabled by default.
+
+## Environment setup
+Create conda environment:
+```bash
+conda env create -f environment.yml
+conda activate yolov5‑nectar
 ```
+
+Or use pip:
+
+```
+pip install -r requirements.txt
+```
+
 ## Training
 Main config for M1+M3 full‑model training: `models/yolov5‑ghost.yaml`
 Dataset config: `data/clo.yaml`
