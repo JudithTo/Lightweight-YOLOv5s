@@ -16,6 +16,13 @@ This code is for nectar‑plant small‑object detection with seven improvement 
 | M7 | Knowledge distillation | ⚠️ Experimental prototype | Distillation loss prototype in `utils/knowledge_distill.py`. Used for accuracy recovery after M6 pruning, executed as separate offline script. |
 
 > Note for experimental prototypes(M4‑M7): These scripts strictly follow the algorithm descriptions in our manuscript, but manual parameter tuning and code adaption are required, they are not enabled by default.
+> Important note for model configuration files:
+There is NO single yaml file enabling all M1‑M7 improvements at once.
+1. M1‑M3 are defined in model yaml files and can be directly loaded by train.py.
+2. M4(Focal‑αEIOU loss) needs manual modification inside `utils/loss.py`.
+3. M5(K‑means++) runs as an offline script; generated anchors need manually copied into your yaml.
+4. M6‑M7 are post‑training offline prototype scripts, executed after model training, not part of network yaml definition.
+
 
 ## Environment setup
 Create conda environment:
