@@ -100,10 +100,19 @@ These two are post‑training offline operations (run after you finish normal tr
 3. Run `utils/knowledge_distill.py` for distillation fine‑tuning on pruned model.
 
 ## Model weights note
-
 *.pt checkpoint files are excluded from git repository via `.gitignore` to avoid repository bloat.
-Original trained `best.pt` and pruned‑distilled lightweight weights are available in **GitHub Releases assets** of this repository.
+The trained checkpoint `best.pt` available in GitHub Releases corresponds to our main model with M1 (Coordinate‑Attention) and M3 (P2 multi‑scale detection head).
+
+M4‑M7 are experimental prototype scripts provided in the source repository. To obtain the final compressed model incorporating all M1‑M7 improvements, users need to:
+1. Re‑generate anchors using the M5 K‑means++ script and re‑train or fine‑tune;
+2. Manually enable M4 Focal‑αEIOU loss by modifying `utils/loss.py`;
+3. Perform M6 APoZ‑FPGM pruning on the obtained checkpoint;
+4. Run M7 knowledge distillation for accuracy recovery.
+
+These steps require hyper‑parameter tuning. Therefore, the fully‑processed M1‑M7 compressed weight is not provided, while all algorithm implementation scripts are available for reproduction.
+
 See `weights/README.txt` inside repository for more details.
+
 
 ## Dataset limitation
 
