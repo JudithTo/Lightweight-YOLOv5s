@@ -47,6 +47,21 @@ python train.py \
   --weights ''
 ```
 
+## Training
+Main config for M1+M3 full‑model training: `models/yolov5‑ghost.yaml`
+Dataset config: `data/clo.yaml`
+```bash
+python train.py \
+  --cfg models/yolov5‑ghost.yaml \
+  --data data/clo.yaml \
+  --hyp data/hyp.scratch.yaml \
+  --epochs 200 \
+  --batch‑size 4 \
+  --img‑size 640 \
+  --device 0 \
+  --weights yolov5s.pt
+
+
 ### M5 K‑means++ anchor usage (off‑line before training)
 
 Run this script **before starting training** to generate optimized anchor boxes for your dataset labels:
@@ -73,6 +88,22 @@ Export trained model to ONNX format for deployment:
 ```
 python scripts/export.py --weights ./weights/best.pt --img 640 --simplify
 ```
+
+### Deployment Environment
+
+#### Setting Configuration
+
+Item	Configuration
+Device	NVIDIA Jetson Xavier NX
+Operating system	Ubuntu 18.04
+Python version	3.8
+Inference framework	TensorRT
+Inference precision	FP16
+Input resolution	640 × 640
+Batch size	1
+Power mode	Maximum performance mode
+Acceleration strategies	TensorRT optimization, FP16 precision calibration, operator fusion, and multi‑threaded CPU/GPU pipeline scheduling
+
 
 ## M6 Pruning & M7 Knowledge Distillation
 
