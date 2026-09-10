@@ -20,7 +20,6 @@ This code is for nectar‑plant small‑object detection with seven improvement 
 ## Environment setup
 Create conda environment:
 ```bash
-conda env create -f environment.yml
 conda activate yolov5‑nectar
 ```
 
