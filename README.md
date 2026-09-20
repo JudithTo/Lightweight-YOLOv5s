@@ -117,8 +117,6 @@ The trained checkpoint `best.pt` is provided in the repository under `weights/be
 
 This checkpoint corresponds to the main Improved-YOLOv5s model with M1 (Coordinate-Attention) and M3 (P2 multi-scale detection head). It is provided as a starting checkpoint; it is not the final M6-pruned or M7-distilled model.
 
-The fully processed M1-M7 compressed checkpoint is not provided.
-
 ## Dataset limitation
 The nectar-plant flower dataset cannot be publicly released due to field-collection constraints. Researchers can adapt the provided code and training configurations to similar small-object detection datasets.
 
