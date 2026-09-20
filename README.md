@@ -3,7 +3,7 @@
 Lightweight YOLOv5s for UAV real-time flower detection
 
 This repository is modified based on the official YOLOv5 repository (https://github.com/ultralytics/yolov5).
-This code implements the seven improvement strategies (M1-M7) described in the manuscript.
+This repository provides the source code and processing workflow for the seven improvement strategies (M1–M7) described in the manuscript.
 
 ## Summary of improvements (M1-M7)
 | ID | Improvement | Status | Description |
