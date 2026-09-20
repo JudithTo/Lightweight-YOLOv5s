@@ -1,9 +1,8 @@
 # Model Weights
-The trained checkpoint `best.pt` is not stored in this source code repository.
-Download link: https://github.com/JudithTo/Lightweight-YOLOv5s/releases/download/v1.0-weights/best.pt
+The trained checkpoint best.pt is provided in the repository at:
 
-Main trained PyTorch checkpoint `best.pt` for Improved‑YOLOv5s with M1(Coord‑Attention) + M3(P2 multi‑scale detection head).
+weights/best.pt
 
-M4‑M7 algorithm prototype scripts are provided in source‑code repository.
-To obtain full M1‑M7 compressed lightweight model, users need to manually modify code, re‑tune hyper‑parameters and run offline pruning & distillation pipeline.
-The fully‑processed M1‑M7 compressed weight is not provided.
+This checkpoint corresponds to the main Improved-YOLOv5s model with M1 (Coordinate-Attention) and M3 (P2 multi-scale detection head).
+
+The repository also provides the source code for M4-M7. The fully processed M1-M7 compressed checkpoint is not provided; users can obtain it by following the training, M6 pruning, and M7 knowledge-distillation steps described in the root README.md.
