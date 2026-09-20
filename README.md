@@ -80,7 +80,7 @@ python train.py \
   --teacher-weights ./weights/Improved_YOLOv5s_teacher.pt \
   --data data/clo.yaml \
   --hyp data/hyp.scratch.yaml \
-  --epochs <M7_EPOCHS> \
+  --epochs 200 \
   --batch-size 4 \
   --img-size 640 \
   --device 0 \
